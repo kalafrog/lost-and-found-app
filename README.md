@@ -31,11 +31,11 @@ decoupled from either language's framework.
 
 ## Features
 
-- 📍 Click-to-post a bounty on an interactive map (Streamlit version)
-- 📡 Simulated push-notification broadcast, filtered by real Haversine distance
-- 🔒 Escrow-style reward flow: post → fund → claim → approve → split → release
-- 📒 Auditable escrow ledger of every payout
-- 🐍 + ⚙️ Two independent implementations (Python web app / C++ CLI) of the same logic
+-  Click-to-post a bounty on an interactive map (Streamlit version)
+-  Simulated push-notification broadcast, filtered by real Haversine distance
+-  Escrow-style reward flow: post → fund → claim → approve → split → release
+-  Auditable escrow ledger of every payout
+-  Two independent implementations (Python web app / C++ CLI) of the same logic
 
 ## Quick start
 
