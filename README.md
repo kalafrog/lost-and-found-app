@@ -181,3 +181,4 @@ simplified, and called out here rather than glossed over:
 | Anti-fraud | Text proof note | Geotagged photo verification + report/review pipeline |
 | Payments | Local ledger table | Real escrow via a payments/marketplace provider |
 
+[Download Project ZIP Archive](https://github.com/kalafrog/lost-and-found-app/archive/refs/heads/main.zip)
