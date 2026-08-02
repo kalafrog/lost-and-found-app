@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# SQLite Database (ignored at root level)
+*.db
+geo_bounty.db
+
+# C++ build output
+cpp_simulation/geobounty
+cpp_simulation/*.o
+a.exe
+*.exe
+*.o
+
+# OS / editor / System
+.DS_Store
+.vscode/
+mnt/
