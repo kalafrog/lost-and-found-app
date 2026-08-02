@@ -181,7 +181,3 @@ simplified, and called out here rather than glossed over:
 | Anti-fraud | Text proof note | Geotagged photo verification + report/review pipeline |
 | Payments | Local ledger table | Real escrow via a payments/marketplace provider |
 
-## License
-
-No license file is included yet -- add one (e.g. MIT) if you want others to be able to
-reuse this code.
