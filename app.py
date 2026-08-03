@@ -290,7 +290,7 @@ enabling stalking or vigilante searches for people.
 
 **Path to production:** Flutter (mobile) → FastAPI/Node backend → PostgreSQL + PostGIS for
 real spatial indexing and radius queries, with a real payments/escrow provider instead of a
-local ledger table.niggas be capping alot these days
+local ledger table.
 """
     )
     if st.button("🔄 Reset all demo data"):
