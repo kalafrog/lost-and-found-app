@@ -1,5 +1,5 @@
 """
-Find & Reward -- crowdsourced geo-bounty prototype
+Find & pet -- crowdsourced geo-bounty prototype
 ====================================================
 Post a lost item or pet, set a paid search radius, and simulate broadcasting
 it to nearby users. When someone finds it, the reward is split between the
