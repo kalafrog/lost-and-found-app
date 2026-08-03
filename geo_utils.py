@@ -1,6 +1,6 @@
 """
 geo_utils.py
-Core geospatial + payout logic for the Find & Reward geo-bounty prototype.
+Core geospatial + pricing logic for the Find & Broadcast prototype.
 Kept dependency-free (stdlib only) so it can be unit tested or reused
 outside of Streamlit (e.g. in a FastAPI backend later).
 """
@@ -9,6 +9,11 @@ import math
 import random
 
 EARTH_RADIUS_KM = 6371.0
+
+# Platform pricing: the poster pays this many rupees per kilometer of
+# search radius they choose. There is no bounty/reward set by the poster --
+# the platform's revenue is purely this broadcast fee, charged up front.
+RATE_PER_KM = 200.0
 
 
 def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
@@ -21,8 +26,8 @@ def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> fl
     d_lambda = math.radians(lon2 - lon1)
 
     a = (
-        math.sin(d_phi / 2) ** 2
-        + math.cos(phi1) * math.cos(phi2) * math.sin(d_lambda / 2) ** 2
+            math.sin(d_phi / 2) ** 2
+            + math.cos(phi1) * math.cos(phi2) * math.sin(d_lambda / 2) ** 2
     )
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
     return EARTH_RADIUS_KM * c
@@ -46,16 +51,13 @@ def find_users_in_radius(bounty_lat: float, bounty_lon: float, radius_km: float,
     return nearby
 
 
-def split_reward(total_reward: float, finder_pct: int = 50) -> tuple:
+def calculate_broadcast_fee(radius_km: float, rate_per_km: float = RATE_PER_KM) -> float:
     """
-    Split the total bounty into (finder_share, platform_share) once a claim
-    is verified and escrow is released. finder_pct is the percentage of the
-    total that goes to the finder; the remainder is the platform fee.
+    The fee a poster pays to broadcast a search request across a given radius.
+    Purely distance-based -- there is no bounty/reward amount to set. This is
+    the platform's entire revenue for a post; finders are not paid anything.
     """
-    finder_pct = max(0, min(100, finder_pct))
-    finder_share = round(total_reward * finder_pct / 100.0, 2)
-    platform_share = round(total_reward - finder_share, 2)
-    return finder_share, platform_share
+    return round(radius_km * rate_per_km, 2)
 
 
 def random_point_within_radius(center_lat: float, center_lon: float, max_radius_km: float, rng=None):
@@ -91,5 +93,5 @@ if __name__ == "__main__":
     nearby = find_users_in_radius(19.0760, 72.8777, 2.0, demo_users)
     print("Nearby users within 2km:", [u["name"] for u in nearby])
 
-    finder, platform = split_reward(500, 50)
-    print(f"Reward split on ₹500: finder=₹{finder}, platform=₹{platform}")
+    fee = calculate_broadcast_fee(2.0)
+    print(f"Broadcast fee for a 2 km radius: ₹{fee} (at ₹{RATE_PER_KM}/km)")
